@@ -1,5 +1,6 @@
 package com.example.weatherapp
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -25,7 +26,9 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.painter.BrushPainter
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -38,7 +41,8 @@ import kotlin.math.round
 
 @Composable
 fun WeatherPage(
-    modifier: Modifier = Modifier, viewModel: WeatherViewModel
+    modifier: Modifier = Modifier,
+    viewModel: WeatherViewModel
 ) {
     var city by remember { mutableStateOf("") }
 
@@ -130,14 +134,15 @@ fun WeatherDetails(
         )
 
         Text(
-            text = "${weatherModel.currentWeather.condition.text}",
+            text = weatherModel.currentWeather.condition.text,
             fontSize = 24.sp,
             textAlign = TextAlign.Center,
             color = Color.Gray
         )
 
         Card(
-            modifier = Modifier.padding(16.dp)
+            modifier = Modifier
+                .padding(16.dp)
         ) {
             Column() {
                 RowOfConditions(weatherModel)
